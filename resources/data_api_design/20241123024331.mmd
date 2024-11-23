@@ -1,0 +1,30 @@
+
+classDiagram
+    class Main {
+        +start() void
+    }
+    class Diagnostics {
+        -NLPProcessor nlp_processor
+        -KnowledgeBase knowledge_base
+        +diagnose_symptoms(symptoms: str) str
+        +diagnose_obd_data(obd_data: dict) str
+    }
+    class NLPProcessor {
+        +process_input(input: str) dict
+    }
+    class OBDInterface {
+        +connect() bool
+        +get_data() dict
+    }
+    class KnowledgeBase {
+        +get_repair_suggestions(issue: str) list
+    }
+    class UI {
+        +start_ui() void
+        +display_results(results: str) void
+    }
+    Main --> UI
+    UI --> Diagnostics
+    Diagnostics --> NLPProcessor
+    Diagnostics --> KnowledgeBase
+    Diagnostics --> OBDInterface

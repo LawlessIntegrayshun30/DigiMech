@@ -1,0 +1,21 @@
+
+sequenceDiagram
+    participant M as Main
+    participant UI as UI
+    participant D as Diagnostics
+    participant NLP as NLPProcessor
+    participant KB as KnowledgeBase
+    participant OBD as OBDInterface
+    M->>UI: start_ui()
+    UI->>D: diagnose_symptoms(symptoms)
+    D->>NLP: process_input(symptoms)
+    NLP-->>D: return processed_data
+    D->>KB: get_repair_suggestions(processed_data)
+    KB-->>D: return suggestions
+    D-->>UI: display_results(suggestions)
+    UI->>D: diagnose_obd_data(obd_data)
+    D->>OBD: get_data()
+    OBD-->>D: return obd_data
+    D->>KB: get_repair_suggestions(obd_data)
+    KB-->>D: return suggestions
+    D-->>UI: display_results(suggestions)
